@@ -20,11 +20,12 @@ namespace cw1_asp.net.Controllers
         {
             var viewModel = new ExchangeAddedViewModel
             {
+
                 NumberOfCharsInName = exchange.Name.Length,
                 NumberOfCharsInDescription = exchange.Description.Length,
                 IsHidden = !exchange.IsVisible
             };
-            return View("ExchangeAdded", viewModel);
+            return View("Index", viewModel);
         }
     }
 }

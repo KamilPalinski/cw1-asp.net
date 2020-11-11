@@ -7,6 +7,7 @@ namespace cw1_asp.net.Models
 {
     public class ExchangeAddedViewModel
     {
+        public int ID { get; set; }
         public int NumberOfCharsInName { get; set; }
 
         public int NumberOfCharsInDescription { get; set; }
