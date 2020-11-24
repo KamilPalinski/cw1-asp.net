@@ -5,27 +5,48 @@ using System.Reflection;
 using System.Threading.Tasks;
 using cw1_asp.net.Models;
 using Microsoft.AspNetCore.Mvc;
+using cw1_asp.net.Database;
 
 namespace cw1_asp.net.Controllers
 {
     public class ExchangeController : Controller
     {
-        [HttpGet]
-        public IActionResult Index()
+        private readonly ExchangesDbContext _dbContext;
+        public ExchangeController(ExchangesDbContext dbContext)
+        {
+            _dbContext = dbContext;
+        }
+
+        public IActionResult index()
         {
             return View();
         }
-        [HttpPost]
-        public IActionResult Index(ExchangeModel exchange)
-        {
-            var viewModel = new ExchangeAddedViewModel
-            {
 
-                NumberOfCharsInName = exchange.Name.Length,
-                NumberOfCharsInDescription = exchange.Description.Length,
-                IsHidden = !exchange.IsVisible
+        [HttpGet]
+        public IActionResult Add()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Add(ExchangeModel item)
+        {
+            var entity = new ExchangeModel
+            {
+                Name = item.Name,
+                Description = item.Description,
+                IsVisible = item.IsVisible,
             };
-            return View("Index", viewModel);
+
+            _dbContext.Items.Add(entity);
+            _dbContext.SaveChanges();
+            return View("Add",entity);
+        }
+
+        [HttpGet]
+        public IActionResult ExchangeAdded(int itemId)
+        {
+            return View(itemId);
         }
     }
 }

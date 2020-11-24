@@ -9,6 +9,7 @@
             Description: formElement.querySelector('input[name="Description"]').value,
             isVisible: formElement.querySelector('input[name="IsVisible"]').checked
         });
+        console.log(requestData);
         // 2. call the application server using fetch method
         const json = {
             method: "POST",
@@ -17,7 +18,6 @@
         };
         const response = await fetch('api/exchange', json);
         const responseJson = await response.json();
-        console.log(responseJson);
         if (responseJson.id >= 0) {
             // 3. un-hide the alertElement when the request has been successful
             alertElement.style.display = "block";
