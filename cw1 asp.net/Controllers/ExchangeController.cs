@@ -17,10 +17,6 @@ namespace cw1_asp.net.Controllers
             _dbContext = dbContext;
         }
 
-        public IActionResult index()
-        {
-            return View();
-        }
 
         [HttpGet]
         public IActionResult Add()
@@ -40,13 +36,16 @@ namespace cw1_asp.net.Controllers
 
             _dbContext.Items.Add(entity);
             _dbContext.SaveChanges();
-            return View("Add",entity);
+
+            
+            return RedirectToAction("ExchangeAdded");
         }
 
-        [HttpGet]
-        public IActionResult ExchangeAdded(int itemId)
+       [HttpGet]
+        public IActionResult ExchangeAdded()
         {
-            return View(itemId);
+            ViewBag.Items = _dbContext.Items;
+            return View();
         }
     }
 }

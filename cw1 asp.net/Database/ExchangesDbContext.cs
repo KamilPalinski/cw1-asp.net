@@ -18,7 +18,7 @@ namespace cw1_asp.net.Database
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.Entity<ExchangeModel>().ToTable("Items");
-
+          
         }
     }
 }

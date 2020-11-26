@@ -1,9 +1,48 @@
-﻿@model ExchangeAddedViewModel
+﻿@model AddConfirmationModel
 
 
-<h1>Company Added</h1>
-<h5>Results</h5>
 
-<div>Chars in name : @Model.NumberOfCharsInName</div>
-<div>Chars in description : @Model.NumberOfCharsInDescription</div>
-<div>Is The company currently hidden : @(Model.IsHidden ? "Yes":"No")</div>
+<h1>Added records</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Id
+            </th>
+            <th>
+                Name
+            </th>
+            <th>
+                Description
+            </th>
+            <th>
+                IsVisible
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+
+        
+        @foreach (var item in ViewBag.Items)
+        {
+            <tr>
+                <td>
+                    @item.Id
+                </td>
+                <td>
+                    @item.Name
+                </td>
+                <td>
+                    @item.Description
+                </td>
+                <td>
+                    @item.IsVisible
+                </td>
+            </tr>
+}
+    </tbody>
+
+
+
+</table>
